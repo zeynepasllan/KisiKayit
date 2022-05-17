@@ -1,0 +1,205 @@
+<!DOCTY "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xht />
+<title>ZZAS_BILGILER</title>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZZAS_BILGILER</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Report&nbsp;ZZAS_ODEV4<br />
+*&---------------------------------------------------------------------*<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+REPORT ZZAS_BILGILER.<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*TABLES:&nbsp;zzas_t01.<br />
+   </div>
+   <div class="code">
+data: zzas_t01 type zzas_t01.<br />
+data: gt_t01 type table of zzas_t01.<br />
+SELECTION-SCREEN begin of BLOCK mainsel WITH FRAME TITLE text-001.<br />
+&nbsp;&nbsp;SELECT-OPTIONS:&nbsp;s_pno&nbsp;for&nbsp;zzas_t01-pno.<br />
+&nbsp;&nbsp;parameters:&nbsp;p_gesch&nbsp;type&nbsp;zzas_t01-pgender,<br />
+&nbsp;&nbsp;p_kadin&nbsp;AS&nbsp;CHECKBOX,&nbsp;p_erkek&nbsp;AS&nbsp;CHECKBOX&nbsp;.<br />
+<br />
+&nbsp;&nbsp;SELECTION-SCREEN&nbsp;end&nbsp;of&nbsp;BLOCK&nbsp;mainsel.<br />
+<br />
+SELECTION-SCREEN BEGIN OF BLOCK mainsel2 WITH FRAME TITLE TEXT-001.<br />
+<br />
+&nbsp;&nbsp;PARAMETERS:&nbsp;p_no&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zzas_t01-pno,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zzas_t01-pname,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_sname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zzas_t01-psurname,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_age&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zzas_t01-p_age,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_gender&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zzas_t01-pgender,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_dprt&nbsp;&nbsp;&nbsp;TYPE&nbsp;zzas_t01-pdepartment,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ps_date&nbsp;TYPE&nbsp;zzas_t01-pstart_date,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zzas_t01-pmail,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_tel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zzas_t01-ptel,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_adres&nbsp;&nbsp;&nbsp;TYPE&nbsp;zzas_t01-paddress.<br />
+<br />
+SELECTION-SCREEN END OF BLOCK mainsel2.<br />
+<br />
+INITIALIZATION. " program ilk çalýþtýðýnda<br />
+p_gesch = 'K'.<br />
+AT SELECTION-SCREEN. " seçim ekranýnda iþlem yapýldýðýnda<br />
+&nbsp;&nbsp;START-OF-SELECTION.&nbsp;"&nbsp;f8&nbsp;e&nbsp;bastýðýmýzda<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;select&nbsp;*&nbsp;from&nbsp;zzas_t01&nbsp;into&nbsp;table&nbsp;gt_t01.<br />
+<br />
+<br />
+<br />
+<br />
+*&nbsp;&nbsp;zzas_t01-pno&nbsp;=&nbsp;p_no.<br />
+*&nbsp;&nbsp;zzas_t01-pname&nbsp;=&nbsp;p_name.<br />
+*&nbsp;&nbsp;zzas_t01-psurname&nbsp;=&nbsp;p_sname.<br />
+*&nbsp;&nbsp;zzas_t01-p_age&nbsp;=&nbsp;p_age.<br />
+*&nbsp;&nbsp;zzas_t01-pgender&nbsp;=&nbsp;p_gender.<br />
+*&nbsp;&nbsp;zzas_t01-pdepartment&nbsp;=&nbsp;p_dprt.<br />
+*&nbsp;&nbsp;zzas_t01-pstart_date&nbsp;=&nbsp;ps_date.<br />
+*&nbsp;&nbsp;zzas_t01-pmail&nbsp;=&nbsp;p_mail.<br />
+*&nbsp;&nbsp;zzas_t01-ptel&nbsp;=&nbsp;p_tel.<br />
+*&nbsp;&nbsp;zzas_t01-paddress&nbsp;=&nbsp;p_adres.<br />
+*&nbsp;&nbsp;insert&nbsp;zzas_t01&nbsp;from&nbsp;zzas_t01.<br />
+*&nbsp;&nbsp;commit&nbsp;work.<br />
+<br />
+<br />
+<br />
+<br />
+   </div>
+   <div class="code">
+do 100 times.<br />
+&nbsp;&nbsp;if&nbsp;sy-index&nbsp;lt&nbsp;7.&nbsp;CONTINUE.&nbsp;ENDIF.<br />
+&nbsp;&nbsp;perform&nbsp;insert_data&nbsp;using&nbsp;sy-index&nbsp;'asd'&nbsp;'asd'&nbsp;'1'.<br />
+&nbsp;&nbsp;ENDDO.<br />
+<br />
+perform total_amount using '3' '5'.      " parametreli<br />
+PERFORM get_data.<br />
+PERFORM set_data.<br />
+PERFORM show_data.<br />
+<br />
+<br />
+&nbsp;&nbsp;end-of-SELECTION.<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Form&nbsp;get_data<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;text<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;--&gt;&nbsp;&nbsp;p1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*&&nbsp;&lt;--&nbsp;&nbsp;p2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM get_data .<br />
+&nbsp;&nbsp;select&nbsp;*&nbsp;from&nbsp;zzas_t01&nbsp;into&nbsp;table&nbsp;@data(gt_t01_n)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;pno&nbsp;in&nbsp;@s_pno<br />
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;pgender&nbsp;eq&nbsp;@p_gesch.<br />
+<br />
+ENDFORM.<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Form&nbsp;set_data<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;text<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;--&gt;&nbsp;&nbsp;p1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*&&nbsp;&lt;--&nbsp;&nbsp;p2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM set_data .<br />
+<br />
+loop at gt_t01 into data(gs_t01).<br />
+&nbsp;&nbsp;if&nbsp;gs_t01-pgender&nbsp;eq&nbsp;'K'.&nbsp;CONTINUE.&nbsp;ENDIF.&nbsp;"koþul&nbsp;saðlanýrsa&nbsp;alttaki&nbsp;iþlemleri&nbsp;yapmaz<br />
+&nbsp;&nbsp;gs_t01-pno&nbsp;=&nbsp;5.<br />
+&nbsp;&nbsp;MODIFY&nbsp;gt_t01&nbsp;from&nbsp;gs_t01.<br />
+&nbsp;&nbsp;if&nbsp;gs_t01-pno&nbsp;=&nbsp;5.&nbsp;exit.&nbsp;ENDIF.&nbsp;"döngü&nbsp;kýrýlýr.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+&nbsp;&nbsp;gs_t01-pno&nbsp;=&nbsp;2.<br />
+&nbsp;&nbsp;gs_t01-pname&nbsp;=&nbsp;'Zeynep'.<br />
+&nbsp;&nbsp;MODIFY&nbsp;gt_t01&nbsp;from&nbsp;gs_t01&nbsp;index&nbsp;2.<br />
+ENDFORM.<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Form&nbsp;show_data<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;text<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;--&gt;&nbsp;&nbsp;p1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*&&nbsp;&lt;--&nbsp;&nbsp;p2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM show_data .<br />
+loop at gt_t01 into data(ls_t01).<br />
+write: ls_t01-pno, ls_t01-pname, ls_t01-psurname.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+ENDFORM.<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Form&nbsp;total_amount<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;text<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;&nbsp;P_<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;&nbsp;P_<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM total_amount  USING    VALUE(p_val1)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(p_val2).<br />
+data lv_total type i.<br />
+lv_total = p_val1 + p_val2.<br />
+ENDFORM.<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Form&nbsp;insert_data<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;text<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;&nbsp;SY_INDEX<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;&nbsp;P_<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;&nbsp;P_<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;&nbsp;P_<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM insert_data  USING    p_no p_ad p_soyad p_cins.<br />
+&nbsp;&nbsp;data&nbsp;ls_t01&nbsp;type&nbsp;zzas_t01.<br />
+&nbsp;&nbsp;ls_t01-pno&nbsp;=&nbsp;p_no.<br />
+&nbsp;&nbsp;ls_t01-pname&nbsp;=&nbsp;p_ad.<br />
+&nbsp;&nbsp;ls_t01-psurname&nbsp;=&nbsp;p_soyad.<br />
+&nbsp;&nbsp;ls_t01-pgender&nbsp;=&nbsp;p_cins.<br />
+&nbsp;&nbsp;insert&nbsp;zzas_t01&nbsp;from&nbsp;ls_t01.<br />
+<br />
+<br />
+ENDFORM.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
